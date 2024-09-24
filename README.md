@@ -39,3 +39,8 @@ cd
   1. create new react component
   2. create new route
   3. link the component to the route path
+
+- wishlist
+  - toggle instead of add to wishlist (add|remove)
+  - open product details page
+  - move to cart ( remove from wishlist and add to cart)
