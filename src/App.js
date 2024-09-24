@@ -21,19 +21,39 @@ function App() {
   const [cart, setCart] = useState([]);
 
   const addToCart = (product) => {
+    // add to cart ( if product is not exist)
+    // update quantity ( if product is  exist)
+
     setCart((prevState) => {
-      return [...prevState, product];
+      // within the set State
+      // condition
+      const currentProduct = prevState.find((item) => {
+        return item._id === product._id;
+      });
+
+      if (currentProduct) {
+        // exist
+        // new property
+        currentProduct.quantity = currentProduct.quantity + 1;
+
+        return [...prevState]; // عدلت اللي كان في السطر اللي فات
+      } else {
+        // مش موجود
+        // currentProduct.quantity = 1; [X]
+        // const newProduct = {
+        //   ...product,
+        //   quantity: 1,
+        // };
+        // product.quantity = 1;
+        return [...prevState, { ...product, quantity: 1 }];
+      }
     });
   };
+
   // remove from cart
   // bonus -> update qty
   return (
-    <CartContext.Provider
-      value={{
-        cart,
-        addToCart,
-      }}
-    >
+    <CartContext.Provider value={{ cart, addToCart }}>
       <BrowserRouter>
         <div className="App">
           <CustomNavbar />
