@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../store/CartContext";
+import { BsFillTrashFill } from "react-icons/bs";
 
 function CartPage() {
   const { cart, removeFromCart, clearCart } = useContext(CartContext);
@@ -14,7 +15,12 @@ function CartPage() {
       <div className="container h-100 py-5">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-10">
-            <button className="btn btn-danger" onClick={clearCart}>
+            <button
+              className="btn gap-2 ms-auto btn-danger d-flex align-items-center justify-content-center"
+              onClick={clearCart}
+            >
+              {" "}
+              <BsFillTrashFill />
               Clear Cart
             </button>
             <div className="d-flex justify-content-between align-items-center mb-4">
@@ -60,8 +66,9 @@ function CartPage() {
                       </div>
                       <button
                         onClick={() => removeFromCart(product)}
-                        className="col-md-2 col-lg-2 col-xl-2  btn btn-danger text-nowrap"
+                        className="col-md-2 gap-2 col-lg-2 col-xl-2  d-flex align-items-center justify-content-center btn btn-danger text-nowrap"
                       >
+                        <BsFillTrashFill />
                         Remove
                       </button>
                     </div>
