@@ -32,3 +32,10 @@ cd
 - product list in the cart -> sum ( total cost )
 - bonus -> qty ( adding to cart ( increase product qty) , count -> product)
 - (+) Wishlist Full flow
+
+--- 
+## 24 sept 
+- create new page
+  1. create new react component
+  2. create new route
+  3. link the component to the route path

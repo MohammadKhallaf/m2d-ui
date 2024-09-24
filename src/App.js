@@ -16,6 +16,7 @@ import { Stack } from "react-bootstrap";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProductGallery from "./pages/ProductGallery";
 import { CartContext } from "./store/CartContext";
+import CartPage from "./pages/CartPage";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -69,6 +70,7 @@ function App() {
           <Container className="p-4">
             <Routes>
               <Route path="/" element={<ProductGallery />} />
+              <Route path="cart" element={<CartPage />} />
             </Routes>
           </Container>
         </div>
