@@ -51,10 +51,22 @@ function App() {
     });
   };
 
+  const removeFromCart = (product) => {
+    // filter
+    setCart((prevArr) => {
+      return prevArr.filter((item) => item._id !== product._id);
+    });
+  };
+
+  const clearCart = () => {
+    setCart([]);
+  };
   // remove from cart
   // bonus -> update qty
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, removeFromCart, clearCart }}
+    >
       <BrowserRouter>
         <div className="App">
           <CustomNavbar />

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../store/CartContext";
 
 function CartPage() {
-  const { cart, addToCart } = useContext(CartContext);
+  const { cart, removeFromCart, clearCart } = useContext(CartContext);
 
   // reduce
   const total = cart.reduce((prevValue, currentItem) => {
@@ -14,6 +14,9 @@ function CartPage() {
       <div className="container h-100 py-5">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-10">
+            <button className="btn btn-danger" onClick={clearCart}>
+              Clear Cart
+            </button>
             <div className="d-flex justify-content-between align-items-center mb-4">
               <h3 className="fw-normal mb-0">Shopping Cart</h3>
               <div>
@@ -42,8 +45,7 @@ function CartPage() {
                       <div className="col-md-3 col-lg-3 col-xl-3">
                         <p className="lead fw-normal mb-2">{product.title}</p>
                       </div>
-                      <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
-                        <button className="btn btn-primary px-2">-</button>
+                      <div className="col-md-2 col-lg-2 col-xl-1 d-flex">
                         <input
                           id="form1"
                           min={0}
@@ -52,22 +54,22 @@ function CartPage() {
                           type="number"
                           className="form-control form-control-sm"
                         />
-                        <button className="btn btn-primary px-2">+</button>
                       </div>
                       <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                         <h5 className="mb-0 text-nowrap">{product.price}EGP</h5>
                       </div>
-                      <div className="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <a href="#!" className="text-danger">
-                          Remove
-                        </a>
-                      </div>
+                      <button
+                        onClick={() => removeFromCart(product)}
+                        className="col-md-2 col-lg-2 col-xl-2  btn btn-danger text-nowrap"
+                      >
+                        Remove
+                      </button>
                     </div>
                   </div>
                 </div>
               );
             })}
-            <div className="card my-3">{total} EGP</div>
+            <div className="card my-3 fs-2 fw-bold">{total.toFixed(2)} EGP</div>
             <div className="card">
               <div className="card-body">
                 <button
