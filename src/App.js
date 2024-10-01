@@ -10,6 +10,9 @@ import CartPage from "./pages/CartPage";
 import ProductGallery from "./pages/ProductGallery";
 import WishlistPage from "./pages/WishlistPage";
 import { CartContext } from "./store/CartContext";
+import LoginPage from "./pages/LoginPage";
+import { Provider } from "react-redux";
+import store from "./store/ReduxStore";
 
 export const WishlistContext = createContext();
 
@@ -82,35 +85,38 @@ function App() {
   };
 
   return (
-    <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, clearCart }}
-    >
-      <WishlistContext.Provider
-        value={{ wishlist, addToWishlist, removeFromWishlist }}
+    <Provider store={store}>
+      <CartContext.Provider
+        value={{ cart, addToCart, removeFromCart, clearCart }}
       >
-        <BrowserRouter>
-          <div className="App">
-            <CustomNavbar />
+        <WishlistContext.Provider
+          value={{ wishlist, addToWishlist, removeFromWishlist }}
+        >
+          <BrowserRouter>
+            <div className="App">
+              <CustomNavbar />
 
-            <Stack
-              direction="horizontal"
-              className="w-100 justify-content-center align-items-center"
-            >
-              <Card className="w-75 mx-3 px-2 py-2 my-1">
-                Some Hero section card
-              </Card>
-            </Stack>
-            <Container className="p-4">
-              <Routes>
-                <Route path="cart" element={<CartPage />} />
-                <Route path="wishlist" element={<WishlistPage />} />
-                <Route path="/" element={<ProductGallery />} />
-              </Routes>
-            </Container>
-          </div>
-        </BrowserRouter>
-      </WishlistContext.Provider>
-    </CartContext.Provider>
+              <Stack
+                direction="horizontal"
+                className="w-100 justify-content-center align-items-center"
+              >
+                <Card className="w-75 mx-3 px-2 py-2 my-1">
+                  Some Hero section card
+                </Card>
+              </Stack>
+              <Container className="p-4">
+                <Routes>
+                  <Route path="login" element={<LoginPage />} />
+                  <Route path="cart" element={<CartPage />} />
+                  <Route path="wishlist" element={<WishlistPage />} />
+                  <Route path="/" element={<ProductGallery />} />
+                </Routes>
+              </Container>
+            </div>
+          </BrowserRouter>
+        </WishlistContext.Provider>
+      </CartContext.Provider>
+    </Provider>
   );
 }
 

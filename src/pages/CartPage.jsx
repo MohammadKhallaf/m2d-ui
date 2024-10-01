@@ -1,8 +1,15 @@
 import { useContext } from "react";
 import { CartContext } from "../store/CartContext";
 import { BsFillTrashFill } from "react-icons/bs";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function CartPage() {
+  //
+  const user = useSelector((state) => state.user);
+  console.log(user);
+
   const { cart, removeFromCart, clearCart } = useContext(CartContext);
 
   // reduce
@@ -79,14 +86,22 @@ function CartPage() {
             <div className="card my-3 fs-2 fw-bold">{total.toFixed(2)} EGP</div>
             <div className="card">
               <div className="card-body">
-                <button
-                  type="button"
-                  data-mdb-button-init=""
-                  data-mdb-ripple-init=""
-                  className="btn btn-warning btn-block btn-lg"
-                >
-                  Proceed to Pay
-                </button>
+                {user ? (
+                  <Button
+                    className="btn btn-warning btn-block btn-lg"
+                    onClick={() => alert("Done")}
+                  >
+                    Proceed to Pay
+                  </Button>
+                ) : (
+                  <Button
+                    className="btn btn-warning btn-block btn-lg"
+                    as={Link}
+                    to="/login"
+                  >
+                    Login{" "}
+                  </Button>
+                )}
               </div>
             </div>
           </div>

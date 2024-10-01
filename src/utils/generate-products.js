@@ -1,4 +1,5 @@
 import { faker } from "@faker-js/faker";
+import axios from "axios";
 
 function generateProducts(count = 10) {
   // array to add the products to ...
@@ -8,14 +9,13 @@ function generateProducts(count = 10) {
   for (let i = 0; i < count; i++) {
     // product schema
     const product = {
-      _id: faker.database.mongodbObjectId(),
       title: faker.commerce.productName(),
       price: faker.commerce.price(),
       description: faker.commerce.productDescription(),
       image: "https://placehold.co/600x400",
       discount: faker.number.int({ min: 0, max: 100 }),
     };
-
+    axios.post("http://localhost:3000/products", product);
     // product add
     products.push(product);
   }

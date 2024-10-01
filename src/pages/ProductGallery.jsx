@@ -1,14 +1,15 @@
 import { Col, Row } from "react-bootstrap";
 import ProductCard from "../components/ProductCard";
-import generateProducts from "../utils/generate-products";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 function ProductGallery() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const list = generateProducts(38);
-    setProducts(list);
+    axios.get("http://localhost:3000/products").then((response) => {
+      setProducts(response.data);
+    });
   }, []); // initial render
 
   return (
